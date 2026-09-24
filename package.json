@@ -1,6 +1,6 @@
 {
   "name": "@persike/dsh-njord",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NJORD composition bundle for DeepSeek Harness 0.1.6-alpha.2",
   "type": "module",
   "license": "MIT",

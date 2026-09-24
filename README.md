@@ -21,10 +21,10 @@ Pare o perfil Web antes de alterar sua composição. Em uma instalação compat�
 
 ```sh
 dsh plugin --profile web add \
-  github:DevViking-Persike/dsh-njord#v0.1.0 \
+  github:DevViking-Persike/dsh-njord#v0.1.1 \
   github:DevViking-Persike/dsh-treadmill#ff9776c8a9f6ba5169c445835e1aa58a03dacde8 \
-  github:DevViking-Persike/dsh-project-tools#a0025e995f99f12a9e7c38ba737906ee78437a35 \
-  github:DevViking-Persike/dsh-njord-ui#c50f3cde20c7661c7f2acde228021cb101207423 \
+  github:DevViking-Persike/dsh-project-tools#8d1c9cb29ace62d49def874bf6cb122a01a16221 \
+  github:DevViking-Persike/dsh-njord-ui#2c3a619931f3849b51b7c140aca55f0973431775 \
   github:DevViking-Persike/dsh-browser-policy#d6cdec525cdc2f5ccaa04286de14f41e5971a492 \
   github:DevViking-Persike/dsh-subscriptions#836fcf304715ab2cfd4bcfbc27dba2bcaab1e6f1 \
   github:DevViking-Persike/dsh-cliproxy#c632fdad50d8e3860a5569290b6c03b1fa330a0e
