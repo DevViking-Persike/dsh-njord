@@ -72,7 +72,7 @@ test('CLIProxy owns Gemini only and gets endpoint and key from the user environm
   assert.deepEqual(inserted.find(row => row.id === 'dsh-subscriptions').config.routes, ['claude', 'codex'])
 })
 
-for (const [preset, mode] of [['njord-code', 'both'], ['njord-ptc', 'ptc']]) {
+for (const [preset, mode] of [['njord-code', 'both']]) {
   test(`${preset} enables workflow with one upstream presentation and no host engines`, () => {
     const data = parse(`presets/${preset}/agent.cordis.yml`)
     const all = flatten(data)

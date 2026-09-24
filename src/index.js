@@ -1,5 +1,5 @@
 /** NJORD preset roots mounted through the upstream registry. */
-import AgentPresets from '@deepseek-ai/dsh-agent-presets'
+import NjordPresets from './presets.js'
 import z from '@deepseek-ai/schemastery'
 import { presetOptions } from './preset-options.js'
 
@@ -14,5 +14,5 @@ export const Config = z.object({
 
 /** Mount the upstream engine with the additional NJORD configurations. */
 export function apply(ctx, config) {
-  ctx.plugin(AgentPresets, presetOptions(config))
+  ctx.plugin(NjordPresets, presetOptions(config))
 }
