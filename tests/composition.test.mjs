@@ -14,6 +14,7 @@ const read = path => readFileSync(new URL(path, root), 'utf8')
 const parse = path => yaml.load(read(path), { schema: entryListSchema })
 const patch = parse('cordis.patch.yml')
 const manifest = JSON.parse(read('package.json'))
+const pins = JSON.parse(read('install-pins.json'))
 const flatten = rows => rows.flatMap(row => [row, ...(row.group ? flatten(row.config) : [])])
 const inserted = patch.flatMap(row => row.insert ?? [])
 
@@ -40,13 +41,23 @@ test('replaces the upstream preset registry without requiring removed rows', () 
 test('mounts every dependency explicitly and declares only one preset engine', () => {
   for (const row of inserted) {
     const packageName = row.name.startsWith('@') ? row.name.split('/').slice(0, 2).join('/') : row.name
-    assert.ok(packageName === manifest.name || manifest.dependencies[packageName], packageName)
+    assert.ok(packageName === manifest.name || manifest.peerDependencies[packageName], packageName)
   }
   assert.equal(inserted.filter(row => row.name === manifest.name).length, 1)
-  for (const spec of Object.values(manifest.dependencies)) assert.match(spec, /^github:DevViking-Persike\/[^#]+#[0-9a-f]{40}$/)
+  for (const [name, spec] of Object.entries(pins)) {
+    assert.equal(manifest.peerDependencies[name], '0.1.0')
+    assert.notEqual(manifest.peerDependenciesMeta?.[name]?.optional, true)
+    assert.match(spec, /^github:DevViking-Persike\/[^#]+#[0-9a-f]{40}$/)
+    assert.ok(read('README.md').includes(spec), name)
+  }
+  for (const dependencies of [manifest.dependencies, manifest.optionalDependencies, manifest.peerDependencies]) {
+    for (const spec of Object.values(dependencies ?? {})) {
+      assert.doesNotMatch(spec, /^(?:git(?:\+|:)|github:|https?:|file:|link:)/)
+    }
+  }
   assert.equal(manifest.bin, undefined)
   assert.equal(manifest.peerDependencies['@deepseek-ai/dsh-agent-presets'], '0.1.6-alpha.2')
-  assert.ok(!Object.keys(manifest.dependencies).some(name => name.includes('session-coordination')))
+  assert.ok(!Object.keys(manifest.peerDependencies).some(name => name.includes('session-coordination')))
 })
 
 test('CLIProxy owns Gemini only and gets endpoint and key from the user environment', () => {

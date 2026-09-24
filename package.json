@@ -22,7 +22,8 @@
     "cordis.patch.yml",
     "README.md",
     "LICENSE",
-    "NOTICE.md"
+    "NOTICE.md",
+    "install-pins.json"
   ],
   "dsh": {
     "bundle": {
@@ -32,18 +33,16 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs"
   },
-  "dependencies": {
-    "@persike/dsh-treadmill": "github:DevViking-Persike/dsh-treadmill#ff9776c8a9f6ba5169c445835e1aa58a03dacde8",
-    "@persike/dsh-project-tools": "github:DevViking-Persike/dsh-project-tools#86f22e087815b049d1f2f1e37c2ca04271a539ec",
-    "@persike/dsh-njord-ui": "github:DevViking-Persike/dsh-njord-ui#0e6d0b196faa6e3729acb841c1fa0f84d71176cc",
-    "@persike/dsh-browser-policy": "github:DevViking-Persike/dsh-browser-policy#d6cdec525cdc2f5ccaa04286de14f41e5971a492",
-    "dsh-subscriptions": "github:DevViking-Persike/dsh-subscriptions#836fcf304715ab2cfd4bcfbc27dba2bcaab1e6f1",
-    "dsh-cliproxy": "github:DevViking-Persike/dsh-cliproxy#c632fdad50d8e3860a5569290b6c03b1fa330a0e"
-  },
   "peerDependencies": {
     "@deepseek-ai/cordis": "4.0.2",
     "@deepseek-ai/schemastery": "3.18.2",
-    "@deepseek-ai/dsh-agent-presets": "0.1.6-alpha.2"
+    "@deepseek-ai/dsh-agent-presets": "0.1.6-alpha.2",
+    "@persike/dsh-treadmill": "0.1.0",
+    "@persike/dsh-project-tools": "0.1.0",
+    "@persike/dsh-njord-ui": "0.1.0",
+    "@persike/dsh-browser-policy": "0.1.0",
+    "dsh-subscriptions": "0.1.0",
+    "dsh-cliproxy": "0.1.0"
   },
   "devDependencies": {
     "@deepseek-ai/cordis-plugin-include": "1.0.7",
