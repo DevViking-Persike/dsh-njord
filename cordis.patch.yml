@@ -1,0 +1,36 @@
+# Apply after the upstream base and web bundles, with legacy NJORD plugins removed.
+- id: agent-presets
+  disabled: true
+
+- insert:
+    - id: njord-docker
+      name: '@persike/dsh-project-tools/docker'
+    - id: njord-docker-local
+      name: '@persike/dsh-project-tools/docker-local'
+    - id: njord-tool-docker
+      name: '@persike/dsh-project-tools/tool-docker'
+      config:
+        inspect: true
+        compose: false
+    - id: njord-treadmill
+      name: '@persike/dsh-treadmill'
+    - id: njord-project-controller
+      name: '@persike/dsh-project-tools'
+    - id: njord-ui
+      name: '@persike/dsh-njord-ui'
+    - id: njord-browser-policy
+      name: '@persike/dsh-browser-policy'
+    - id: njord-presets
+      name: '@persike/dsh-njord'
+    - id: dsh-subscriptions
+      name: 'dsh-subscriptions'
+      config:
+        routes: [claude, codex]
+    - id: dsh-cliproxy
+      name: dsh-cliproxy
+      disabled: !!js '!process.env.DSH_NJORD_CLIPROXY_BASE_URL'
+      config:
+        routes: [gemini]
+        baseURL: !!js process.env.DSH_NJORD_CLIPROXY_BASE_URL
+        apiKeyEnv: CLIPROXY_API_KEY
+        readLocalProxyKey: false
